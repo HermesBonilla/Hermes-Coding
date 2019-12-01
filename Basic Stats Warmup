@@ -1,0 +1,37 @@
+import numpy as np
+import scipy.stats 
+from scipy import stats
+# Post to-do: make the array so that the user can imput values
+a = np.array([64630,11735,14216,99233,14470,4978,73429,38120,51135,67060])
+
+mean = np.mean(a)
+median = np.median(a)
+mode = stats.mode(a)
+stD = np.std(a)
+def mean_confidence_interval(data, confidence=0.95):
+    a = 1.0 * np.array(data)
+    n = len(a)
+    m, se = np.mean(a), scipy.stats.sem(a)
+    h = se * scipy.stats.t.ppf((1 + confidence) / 2., n-1)
+    return m, m-h, m+h
+#print mean
+print("The array's mean is")
+print(mean)
+
+#print median
+print("The array's median is")
+print(median)
+
+#print mode
+print("The array's mode is")
+print(mode)
+print("Specifically, the mode is")
+print(mode[0])
+
+#print standard deviation
+print("The array's standard deviation is")
+print(stD)
+
+#print Confidence Interval
+print("The array's confidence interval is")
+mean_confidence_interval(a)
